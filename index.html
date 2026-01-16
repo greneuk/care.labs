@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareLabs | AI Social Care Experiments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gumroad-pink: #ff90e8;
+            --gumroad-yellow: #ffdb00;
+            --gumroad-blue: #00ebff;
+            --gumroad-green: #00ff00;
+            --black: #000000;
+        }
+
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #f4f4f0;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .brutal-border {
+            border: 4px solid var(--black);
+        }
+
+        .brutal-shadow {
+            box-shadow: 6px 6px 0px 0px var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .brutal-shadow:hover {
+            box-shadow: 2px 2px 0px 0px var(--black);
+            transform: translate(4px, 4px);
+        }
+
+        .brutal-shadow-static {
+            box-shadow: 8px 8px 0px 0px var(--black);
+        }
+
+        .bg-pink-brutal { background-color: var(--gumroad-pink); }
+        .bg-yellow-brutal { background-color: var(--gumroad-yellow); }
+        .bg-blue-brutal { background-color: var(--gumroad-blue); }
+        .bg-green-brutal { background-color: var(--gumroad-green); }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            background: var(--black);
+            color: white;
+            padding: 10px 0;
+            border-top: 4px solid var(--black);
+            border-bottom: 4px solid var(--black);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .hidden { display: none; }
+
+        .manifesto-text {
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+        }
+        
+        .case-study-img {
+            filter: grayscale(100%) contrast(120%);
+            mix-blend-mode: multiply;
+        }
+        
+        .case-study-card:hover .case-study-img {
+            filter: none;
+            mix-blend-mode: normal;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header / Nav -->
+    <nav class="flex justify-between items-center mb-12">
+        <button onclick="showPage('home')" class="brutal-border bg-white p-3 brutal-shadow-static hover:bg-yellow-brutal transition-colors text-left">
+            <h1 class="font-black text-2xl tracking-tighter uppercase">CARE.LABS</h1>
+        </button>
+        <div class="hidden md:flex gap-6 items-center">
+            <button onclick="showPage('manifesto')" class="font-bold hover:underline">Manifesto</button>
+            <button onclick="showPage('cases')" class="font-bold hover:underline">Case Studies</button>
+            <a href="#" class="font-bold hover:underline">Docs</a>
+            <a href="#" class="font-bold brutal-border px-4 py-2 bg-pink-brutal brutal-shadow">Submit Tool</a>
+        </div>
+    </nav>
+
+    <!-- LANDING PAGE -->
+    <div id="home-page">
+        <!-- Hero Section -->
+        <header class="max-w-6xl mx-auto mb-20 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="inline-block brutal-border bg-yellow-brutal px-3 py-1 font-bold text-sm mb-4">EXPERIMENTAL BETA</span>
+                <h2 class="text-6xl md:text-8xl font-black leading-none mb-6 italic tracking-tighter uppercase">
+                    SOCIAL CARE <br><span class="text-white bg-black px-2">ISN'T BORING.</span>
+                </h2>
+                <p class="text-xl font-medium mb-8 max-w-md leading-relaxed">
+                    Small, weird, and useful AI experiments designed to make care better for everyone. No corporate fluff, just stuff that works.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="brutal-border bg-blue-brutal px-8 py-4 font-black text-xl brutal-shadow uppercase">Explore Labs</button>
+                    <button onclick="showPage('cases')" class="brutal-border bg-white px-8 py-4 font-black text-xl brutal-shadow uppercase">Design Cases</button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="brutal-border bg-green-brutal p-8 brutal-shadow-static rotate-2">
+                    <div class="bg-white brutal-border p-4 h-64 flex items-center justify-center">
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce"><path d="M12 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9Z"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/></svg>
+                    </div>
+                    <div class="mt-4 font-black text-lg uppercase tracking-tight italic">Experiment #042: The Empathy Bot</div>
+                </div>
+                <div class="absolute -top-4 -right-4 w-12 h-12 bg-pink-brutal brutal-border rounded-full hidden md:block"></div>
+            </div>
+        </header>
+
+        <!-- Marquee -->
+        <div class="marquee mb-20 -mx-8">
+            <div class="marquee-content">
+                HUMAN FIRST • AI ASSISTED • OPEN SOURCE • COMMUNITY DRIVEN • NO MORE RED TAPE • BETTER CARE NOW • HUMAN FIRST • AI ASSISTED • OPEN SOURCE • COMMUNITY DRIVEN • NO MORE RED TAPE • BETTER CARE NOW • 
+            </div>
+        </div>
+
+        <!-- Experiments Grid -->
+        <section class="max-w-6xl mx-auto mb-32">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h3 class="text-4xl font-black tracking-tighter uppercase">The Experiments</h3>
+                    <p class="font-bold text-gray-600 italic underline">Tools built for care by people who care.</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <!-- RISKR (Updated Emoji) -->
+                <div class="brutal-border bg-white p-6 brutal-shadow flex flex-col">
+                    <div class="h-48 bg-blue-brutal brutal-border mb-4 flex items-center justify-center">
+                        <span class="text-6xl font-black">🧭</span>
+                    </div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="text-3xl font-black uppercase tracking-tighter italic">Riskr</h4>
+                        <span class="bg-black text-white text-xs px-2 py-1 font-black">ACTIVE</span>
+                    </div>
+                    <p class="font-medium mb-6 flex-grow">Smart, automated risk assessments that actually make sense. Cut the paperwork, keep the safety.</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-black text-sm uppercase">Free</span>
+                        <button class="brutal-border bg-black text-white px-6 py-2 font-black text-sm hover:bg-blue-brutal hover:text-black transition-colors">LAUNCH</button>
+                    </div>
+                </div>
+
+                <!-- SUGGESTION BOX 1 -->
+                <div class="brutal-border bg-white p-6 brutal-shadow flex flex-col border-dashed border-4 border-gray-300 group">
+                    <div class="h-48 bg-gray-50 border-2 border-dashed border-gray-300 mb-4 flex flex-col items-center justify-center">
+                        <span class="text-4xl font-black text-gray-300 group-hover:text-black transition-colors">?</span>
+                    </div>
+                    <h4 class="text-2xl font-black mb-2 uppercase text-gray-400 group-hover:text-black transition-colors">Your Idea</h4>
+                    <p class="font-medium mb-6 flex-grow text-gray-400 italic">What's the most annoying part of your job? Let's fix it.</p>
+                    <button class="brutal-border bg-white text-black border-gray-300 px-4 py-2 font-black text-sm hover:border-black transition-colors">SUGGEST</button>
+                </div>
+
+                <!-- SUGGESTION BOX 2 (Placeholder) -->
+                <div class="brutal-border bg-white p-6 brutal-shadow flex flex-col border-dashed border-4 border-gray-300 group opacity-70">
+                    <div class="h-48 bg-gray-50 border-2 border-dashed border-gray-300 mb-4 flex flex-col items-center justify-center">
+                        <span class="text-2xl font-black text-gray-300 italic group-hover:text-black transition-colors">EMPTY SLOT</span>
+                    </div>
+                    <h4 class="text-2xl font-black mb-2 uppercase text-gray-400 group-hover:text-black transition-colors">Experimental Slot</h4>
+                    <p class="font-medium mb-6 flex-grow text-gray-400 italic">This space is reserved for the next breakthrough in social care AI.</p>
+                    <button class="brutal-border bg-white text-gray-400 border-gray-300 px-4 py-2 font-black text-sm cursor-not-allowed">LOCKED</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MANIFESTO PAGE -->
+    <div id="manifesto-page" class="hidden max-w-4xl mx-auto py-12">
+        <button onclick="showPage('home')" class="mb-8 font-black uppercase flex items-center gap-2 hover:underline">
+            ← Back to Labs
+        </button>
+        
+        <h2 class="text-7xl md:text-9xl font-black italic uppercase tracking-tighter mb-12 manifesto-text">
+            Our <br><span class="bg-pink-brutal px-4">Manifesto</span>
+        </h2>
+
+        <div class="space-y-12 mb-24">
+            <div class="brutal-border p-8 bg-white brutal-shadow-static">
+                <h3 class="text-4xl font-black mb-4 uppercase italic tracking-tight">01. Social care is soul-drained.</h3>
+                <p class="text-xl font-bold leading-snug">
+                    Current systems are built for compliance, not care. We spend 70% of our time filling boxes and 30% looking into eyes. We want to flip the ratio.
+                </p>
+            </div>
+
+            <div class="brutal-border p-8 bg-blue-brutal brutal-shadow-static rotate-1">
+                <h3 class="text-4xl font-black mb-4 uppercase italic tracking-tight text-black">02. Human in the Loop. Period.</h3>
+                <p class="text-xl font-bold leading-snug text-black">
+                    Any tool that tries to automate empathy is a failure of imagination. We build co-pilots, not auto-pilots. No exceptions.
+                </p>
+            </div>
+
+            <div class="brutal-border p-8 bg-yellow-brutal brutal-shadow-static -rotate-1">
+                <h3 class="text-4xl font-black mb-4 uppercase italic tracking-tight text-black">03. Radical Transparency.</h3>
+                <p class="text-xl font-bold leading-snug text-black">
+                    If we use a model, you'll know which one. If we prompt it, you'll see the prompt. No "Magic." Just tools people understand.
+                </p>
+            </div>
+
+            <div class="brutal-border p-8 bg-white brutal-shadow-static">
+                <h3 class="text-4xl font-black mb-4 uppercase italic tracking-tight text-black">04. Safety as a Feature.</h3>
+                <p class="text-xl font-bold leading-snug text-black">
+                    Responsibility isn't a checkbox. We design for the most vulnerable person in the room. If it's not safe enough for family, it's not safe enough.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASE STUDIES PAGE -->
+    <div id="cases-page" class="hidden max-w-6xl mx-auto py-12">
+        <button onclick="showPage('home')" class="mb-8 font-black uppercase flex items-center gap-2 hover:underline">
+            ← Back to Labs
+        </button>
+
+        <div class="flex flex-col md:flex-row justify-between items-baseline gap-4 mb-12">
+            <h2 class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter manifesto-text">
+                Design <br><span class="bg-green-brutal px-4">Cases</span>
+            </h2>
+            <p class="text-xl font-bold max-w-sm italic">How we tackle complexity without losing the human touch.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-24">
+            <!-- Case Study 1 -->
+            <div class="brutal-border bg-white brutal-shadow case-study-card overflow-hidden group">
+                <div class="h-64 bg-yellow-brutal border-b-4 border-black flex items-center justify-center p-8 overflow-hidden">
+                    <div class="case-study-img text-8xl transition-all duration-300">🔍</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="brutal-border bg-pink-brutal px-2 py-1 text-xs font-black uppercase">Research</span>
+                        <span class="brutal-border bg-white px-2 py-1 text-xs font-black uppercase">Riskr</span>
+                    </div>
+                    <h3 class="text-4xl font-black uppercase tracking-tight mb-4 group-hover:underline">Reimagining Risk Assessment</h3>
+                    <p class="font-bold text-gray-700 mb-6 leading-relaxed">
+                        Moving away from checkbox compliance to narrative-driven safety. A study on how we reduced completion time by 40% while increasing detail quality.
+                    </p>
+                    <button class="font-black uppercase border-b-4 border-black hover:bg-black hover:text-white px-2 transition-colors">Read Case Study</button>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="brutal-border bg-white brutal-shadow case-study-card overflow-hidden group">
+                <div class="h-64 bg-blue-brutal border-b-4 border-black flex items-center justify-center p-8 overflow-hidden">
+                    <div class="case-study-img text-8xl transition-all duration-300">🛠️</div>
+                </div>
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="brutal-border bg-green-brutal px-2 py-1 text-xs font-black uppercase">UI Design</span>
+                        <span class="brutal-border bg-white px-2 py-1 text-xs font-black uppercase">Brutalism</span>
+                    </div>
+                    <h3 class="text-4xl font-black uppercase tracking-tight mb-4 group-hover:underline">Interface for Overload</h3>
+                    <p class="font-bold text-gray-700 mb-6 leading-relaxed">
+                        Why we chose neubrutalism for care workers. Fighting high-stress cognitive load with high-contrast, chunky interactions and clear hierarchies.
+                    </p>
+                    <button class="font-black uppercase border-b-4 border-black hover:bg-black hover:text-white px-2 transition-colors">Read Case Study</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="max-w-4xl mx-auto mb-32 brutal-border bg-blue-brutal p-8 md:p-16 brutal-shadow-static text-center mt-20">
+        <h3 class="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tight">Stay updated on the labs</h3>
+        <p class="text-xl font-bold mb-8">We send out new experiments once a month. No spam, just code.</p>
+        <form class="flex flex-col sm:flex-row gap-0 justify-center" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="you@example.com" class="brutal-border p-4 w-full sm:max-w-md font-bold focus:outline-none">
+            <button class="brutal-border bg-black text-white px-8 py-4 font-black uppercase hover:bg-white hover:text-black transition-colors">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t-4 border-black pt-12 pb-24 grid md:grid-cols-3 gap-8">
+        <div>
+            <h5 class="font-black text-xl mb-4 uppercase italic">CareLabs</h5>
+            <p class="font-bold">Fighting the soul-drain of bureaucratic care since 2024.</p>
+        </div>
+        <div>
+            <h5 class="font-black text-xl mb-4 uppercase">Links</h5>
+            <ul class="font-bold space-y-2">
+                <li><button onclick="showPage('manifesto')" class="hover:underline text-left">Manifesto</button></li>
+                <li><button onclick="showPage('cases')" class="hover:underline text-left">Case Studies</button></li>
+                <li><a href="#" class="hover:underline">Github Repo</a></li>
+                <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 class="font-black text-xl mb-4 uppercase">Social</h5>
+            <div class="flex gap-4">
+                <div class="w-10 h-10 brutal-border bg-white brutal-shadow flex items-center justify-center font-black">X</div>
+                <div class="w-10 h-10 brutal-border bg-white brutal-shadow flex items-center justify-center font-black">M</div>
+                <div class="w-10 h-10 brutal-border bg-white brutal-shadow flex items-center justify-center font-black">L</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = ['home', 'manifesto', 'cases'];
+            pages.forEach(p => {
+                const el = document.getElementById(p + '-page');
+                if (el) el.classList.add('hidden');
+            });
+            
+            const target = document.getElementById(pageId + '-page');
+            if (target) target.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
